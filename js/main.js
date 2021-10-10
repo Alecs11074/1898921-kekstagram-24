@@ -21,6 +21,33 @@ function checkLength (string, max_length){
   }
   return true;
 }
-
+numbers_for_massive = randoSequence(1,25);
+numbers_for_avatars = randoSequence(1,6);
+function createComments (){
+  messages = ["Всё отлично!", "В целом всё неплохо. Но не всё.", "Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.", "Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.","Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.", "Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!"];
+  names = ['Артём', 'Иван', 'Илья', 'Миша', 'Маша', 'Даша', 'Саша', 'Марина'];
+  comments = [];
+  for (let i = 0; i < 3; i++){
+    comments[i] = {};
+    comments[i].id = Math.random();
+    comments[i].avatar = `img/avatar-${String(numbers_for_avatars[i])}.svg`;
+    comments[i].message = messages[getRandomNumber(0, messages.length-1)];
+    comments[i].name = names[getRandomNumber(0, names.length-1)];
+  }
+  return comments;
+}
+function createMassive (){
+  massive = [];
+  for (let i = 0; i < 25; i++){
+    massive[i] = {};
+    massive[i].id = numbers_for_massive[i];
+    massive[i].url = `photos/${String(numbers_for_massive[i])}.jpg`;
+    massive[i].description = 'Классная фотография, опубликованная пользователем сайта';
+    massive[i].likes = getRandomNumber(15, 200);
+    massive[i].comments = createComments();
+  }
+  return massive;
+}
 getRandomNumber();
 checkLength();
+createMassive();
