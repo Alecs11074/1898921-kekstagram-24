@@ -1,5 +1,5 @@
-import { checkStringLength } from "./utils/check-string-length";
-import { getRandomPositiveInteger } from "./utils/get-random-positive-integer";
+import { checkStringLength } from './utils/check-string-length';
+import { getRandomPositiveInteger } from './utils/get-random-positive-integer';
 
 const MESSAGES = ['Всё отлично!', 'В целом всё неплохо. Но не всё.', 'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.', 'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.','Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.', 'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'];
 const NAMES = ['Артём', 'Иван', 'Илья', 'Миша', 'Маша', 'Даша', 'Саша', 'Марина'];
@@ -20,7 +20,7 @@ const generateNoRepeatIds = (usedIdsArray = [], idStart = 1, idEnd = 25) => {
   usedIdsArray.push(id);
 
   return id;
-};
+}
 
 const generateNoRepeatAvatars = (usedAvatarsArray = [], AvatarStart = 1, AvatarEnd = 6) => {
   let id = getRandomPositiveInteger(AvatarStart, AvatarEnd);
@@ -36,7 +36,7 @@ const generateNoRepeatAvatars = (usedAvatarsArray = [], AvatarStart = 1, AvatarE
   usedAvatarsArray.push(id);
 
   return id;
-};
+}
 
 function createComments (){
   for (let index = 0; index < 3; index++){
@@ -59,7 +59,7 @@ function createMassive (){
     MASSIVE[index].comments = createComments();
   }
   return MASSIVE;
-}
+};
 getRandomPositiveInteger(0,5);
 checkStringLength('Test1', 5);
 createMassive();
