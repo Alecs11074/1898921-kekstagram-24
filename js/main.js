@@ -5,31 +5,70 @@ const NAMES = ['Артём', 'Иван', 'Илья', 'Миша', 'Маша', 'Д
 const COMMENTS = [];
 const MASSIVE = [];
 
-function getRandomNumber (min, max){
-  if (min < 0){
+function checkStringLength (string, length) {
+  return string.length <= length;
+}
+
+// Функция взята из интернета и доработана
+// Источник - https://github.com/you-dont-need/You-Dont-Need-Lodash-Underscore#_random
+
+function getRandomPositiveInteger (firstInteger, secondInteger) {
+  if (firstInteger < 0){
     throw new Error('Значение минимального диапазона меньше 0. Функция прекращает свою работу');
   }
-  if (min === max){
+  if (firstInteger === secondInteger){
     throw new Error('Значение минимального диапазона равно значению максимального диапазона. Функция прекращает свою работу');
   }
-  if (min > max){
+  if (firstInteger > secondInteger){
     throw new Error('Значение минимального диапазона больше значения максимального диапазона. Функция прекращает свою работу');
   }
-  return Math.floor(Math.random() * (max - min + 1)) + min; // Источник: https://coderoad.ru/1527803/%D0%93%D0%B5%D0%BD%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F-random-%D1%86%D0%B5%D0%BB%D1%8B%D1%85-%D1%87%D0%B8%D1%81%D0%B5%D0%BB-%D0%B2-JavaScript-%D0%B2-%D0%BE%D0%BF%D1%80%D0%B5%D0%B4%D0%B5%D0%BB%D0%B5%D0%BD%D0%BD%D0%BE%D0%BC-%D0%B4%D0%B8%D0%B0%D0%BF%D0%B0%D0%B7%D0%BE%D0%BD%D0%B5
 
-}
+  const lower = Math.ceil(Math.min(Math.abs(firstInteger), Math.abs(secondInteger)));
+  const upper = Math.floor(Math.max(Math.abs(firstInteger), Math.abs(secondInteger)));
+  const result = Math.random() * (upper - lower + 1) + lower;
 
-function checkLength (string, maxLength){
-  return string.length <= maxLength;
-}
+  return Math.floor(result);
+};
+
+const generateNoRepeatIds = (usedIdsArray = [], idStart = 1, idEnd = 25) => {
+  let id = getRandomPositiveInteger(idStart, idEnd);
+
+  while (usedIdsArray.includes(id)) {
+    id = getRandomPositiveInteger(idStart, idEnd);
+
+    if (!usedIdsArray.includes(id)) {
+      break;
+    }
+  }
+
+  usedIdsArray.push(id);
+
+  return id;
+};
+
+const generateNoRepeatAvatars = (usedAvatarsArray = [], AvatarStart = 1, AvatarEnd = 6) => {
+  let id = getRandomPositiveInteger(AvatarStart, AvatarEnd);
+
+  while (usedAvatarsArray.includes(id)) {
+    id = getRandomPositiveInteger(AvatarStart, AvatarEnd);
+
+    if (!usedAvatarsArray.includes(id)) {
+      break;
+    }
+  }
+
+  usedAvatarsArray.push(id);
+
+  return id;
+};
 
 function createComments (){
   for (let index = 0; index < 3; index++){
     COMMENTS[index] = {};
     COMMENTS[index].id = Math.random();
-    COMMENTS[index].avatar = `img/avatar-${String(NUMBERS_FOR_AVATARS[index])}.svg`;
-    COMMENTS[index].message = MESSAGES[getRandomNumber(0, MESSAGES.length-1)];
-    COMMENTS[index].name = NAMES[getRandomNumber(0, NAMES.length-1)];
+    COMMENTS[index].avatar = `img/avatar-${String(generateNoRepeatAvatars())}.svg`;
+    COMMENTS[index].message = MESSAGES[getRandomPositiveInteger(0, MESSAGES.length-1)];
+    COMMENTS[index].name = NAMES[getRandomPositiveInteger(0, NAMES.length-1)];
   }
   return COMMENTS;
 }
@@ -37,14 +76,14 @@ function createComments (){
 function createMassive (){
   for (let index = 0; index < 25; index++){
     MASSIVE[index] = {};
-    MASSIVE[index].id = NUMBERS_FOR_MASSIVE[index];
-    MASSIVE[index].url = `photos/${String(NUMBERS_FOR_MASSIVE[index])}.jpg`;
+    MASSIVE[index].id = generateNoRepeatIds();
+    MASSIVE[index].url = `photos/${String(generateNoRepeatIds())}.jpg`;
     MASSIVE[index].description = 'Классная фотография, опубликованная пользователем сайта';
-    MASSIVE[index].likes = getRandomNumber(15, 200);
+    MASSIVE[index].likes = getRandomPositiveInteger(15, 200);
     MASSIVE[index].comments = createComments();
   }
   return MASSIVE;
 }
-getRandomNumber(0,5);
-checkLength('Test1', 5);
+getRandomPositiveInteger(0,5);
+checkStringLength('Test1', 5);
 createMassive();
