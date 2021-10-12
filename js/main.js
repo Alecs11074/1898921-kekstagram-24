@@ -1,33 +1,10 @@
+import { checkStringLength } from "./utils/check-string-length";
+import { getRandomPositiveInteger } from "./utils/get-random-positive-integer";
 
 const MESSAGES = ['Всё отлично!', 'В целом всё неплохо. Но не всё.', 'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.', 'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.','Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.', 'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'];
 const NAMES = ['Артём', 'Иван', 'Илья', 'Миша', 'Маша', 'Даша', 'Саша', 'Марина'];
 const COMMENTS = [];
 const MASSIVE = [];
-
-function checkStringLength (string, length) {
-  return string.length <= length;
-}
-
-// Функция взята из интернета и доработана
-// Источник - https://github.com/you-dont-need/You-Dont-Need-Lodash-Underscore#_random
-
-function getRandomPositiveInteger (firstInteger, secondInteger) {
-  if (firstInteger < 0){
-    throw new Error('Значение минимального диапазона меньше 0. Функция прекращает свою работу');
-  }
-  if (firstInteger === secondInteger){
-    throw new Error('Значение минимального диапазона равно значению максимального диапазона. Функция прекращает свою работу');
-  }
-  if (firstInteger > secondInteger){
-    throw new Error('Значение минимального диапазона больше значения максимального диапазона. Функция прекращает свою работу');
-  }
-
-  const lower = Math.ceil(Math.min(Math.abs(firstInteger), Math.abs(secondInteger)));
-  const upper = Math.floor(Math.max(Math.abs(firstInteger), Math.abs(secondInteger)));
-  const result = Math.random() * (upper - lower + 1) + lower;
-
-  return Math.floor(result);
-};
 
 const generateNoRepeatIds = (usedIdsArray = [], idStart = 1, idEnd = 25) => {
   let id = getRandomPositiveInteger(idStart, idEnd);
