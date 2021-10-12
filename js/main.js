@@ -36,7 +36,7 @@ const generateNoRepeatAvatars = (usedAvatarsArray = [], AvatarStart = 1, AvatarE
   usedAvatarsArray.push(id);
 
   return id;
-}
+};
 
 function createComments (){
   for (let index = 0; index < 3; index++){
@@ -47,7 +47,7 @@ function createComments (){
     COMMENTS[index].name = NAMES[getRandomPositiveInteger(0, NAMES.length-1)];
   }
   return COMMENTS;
-}
+};
 
 function createMassive (){
   for (let index = 0; index < 25; index++){
