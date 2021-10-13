@@ -20,7 +20,7 @@ const generateNoRepeatIds = (usedIdsArray = [], idStart = 1, idEnd = 25) => {
   usedIdsArray.push(id);
 
   return id;
-}
+};
 
 const generateNoRepeatAvatars = (usedAvatarsArray = [], AvatarStart = 1, AvatarEnd = 6) => {
   let id = getRandomPositiveInteger(AvatarStart, AvatarEnd);
@@ -47,7 +47,7 @@ function createComments (){
     COMMENTS[index].name = NAMES[getRandomPositiveInteger(0, NAMES.length-1)];
   }
   return COMMENTS;
-};
+}
 
 function createMassive (){
   for (let index = 0; index < 25; index++){
@@ -59,7 +59,7 @@ function createMassive (){
     MASSIVE[index].comments = createComments();
   }
   return MASSIVE;
-};
+}
 getRandomPositiveInteger(0,5);
 checkStringLength('Test1', 5);
 createMassive();
