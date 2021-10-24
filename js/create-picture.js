@@ -10,7 +10,7 @@ const pictureComments = pictureLink.querySelector('.picture__comments');
 const createPictureFragment = document.createDocumentFragment();
 
 function createPicture() {
-  for (let i = 0; i < 25; i++) {
+  for (let index = 0; index < 25; index++) {
     const pictureItem = pictureTemplate.cloneNode(true);
     pictureImg.src = `photos/${String(generateNoRepeatIds())}.jpg`;
     pictureLikes.textContent = getRandomPositiveInteger(15, 200);
