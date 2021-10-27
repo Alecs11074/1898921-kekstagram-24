@@ -62,5 +62,5 @@ function createMassive (){
 getRandomPositiveInteger(0,5);
 checkStringLength('Test1', 5);
 createMassive();
-export {createMassive};
+export {createMassive, generateNoRepeatIds};
 
