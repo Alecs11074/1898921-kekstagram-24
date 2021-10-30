@@ -4,6 +4,7 @@ const MESSAGES = ['Всё отлично!', 'В целом всё неплохо
 const NAMES = ['Артём', 'Иван', 'Илья', 'Миша', 'Маша', 'Даша', 'Саша', 'Марина'];
 const COMMENTS = [];
 const MASSIVE = [];
+const description = 'Классная фотография, опубликованная пользователем сайта';
 
 const generateNoRepeatIds = (usedIdsArray = [], idStart = 1, idEnd = 25) => {
   let id = getRandomPositiveInteger(idStart, idEnd);
@@ -53,7 +54,7 @@ function createMassive (){
     MASSIVE[index] = {};
     MASSIVE[index].id = generateNoRepeatIds();
     MASSIVE[index].url = `photos/${String(generateNoRepeatIds())}.jpg`;
-    MASSIVE[index].description = 'Классная фотография, опубликованная пользователем сайта';
+    MASSIVE[index].description = description;
     MASSIVE[index].likes = getRandomPositiveInteger(15, 200);
     MASSIVE[index].comments = createComments();
   }
@@ -62,5 +63,5 @@ function createMassive (){
 getRandomPositiveInteger(0,5);
 checkStringLength('Test1', 5);
 createMassive();
-export {createMassive, generateNoRepeatIds};
+export {createMassive, generateNoRepeatIds, description, generateNoRepeatAvatars, NAMES, MESSAGES};
 
