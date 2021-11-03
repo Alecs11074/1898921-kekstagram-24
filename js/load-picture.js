@@ -48,7 +48,7 @@ hashTags.addEventListener('invalid', () => {
       hashTags.setCustomValidity('Длина хэштега превышает 20 символов');
     }
 
-    else if (value.match(/./)) {
+    else if (value.match(/[^#]./)) {
       hashTags.setCustomValidity('В хештеге не должно находится специальных символов, в том числе и пробел');
     }
 
