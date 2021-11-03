@@ -1,5 +1,4 @@
-import { generateNoRepeatIds } from './data';
-import { getRandomPositiveInteger } from './util';
+import { PICTURES } from './data';
 const pictureContainer = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content;
 const pictureLink = pictureTemplate.querySelector('.picture');
@@ -12,9 +11,9 @@ const createPictureFragment = document.createDocumentFragment();
 function createPicture() {
   for (let index = 0; index < 25; index++) {
     const pictureItem = pictureTemplate.cloneNode(true);
-    pictureImg.src = `photos/${String(generateNoRepeatIds())}.jpg`;
-    pictureLikes.textContent = getRandomPositiveInteger(15, 200);
-    pictureComments.textContent = getRandomPositiveInteger(0, 3);
+    pictureImg.src = PICTURES[index].url;
+    pictureLikes.textContent = PICTURES[index].likes;
+    pictureComments.textContent = PICTURES[index].comments.length;
     createPictureFragment.appendChild(pictureItem);
   }
 }

@@ -1,3 +1,7 @@
+function isEscapeKey(evt) {
+  return evt.key === 'Escape';
+}
+
 function checkStringLength (string, length) {
   return string.length <= length;
 }
@@ -30,4 +34,5 @@ function getRandomPositiveInteger (firstInteger, secondInteger) {
   // потому что Math.random() генерирует только дробные числа и ноль.
   return Math.floor(result);
 }
-export {getRandomPositiveInteger, checkStringLength};
+
+export {getRandomPositiveInteger, checkStringLength, isEscapeKey};
