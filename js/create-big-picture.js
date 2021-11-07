@@ -1,5 +1,6 @@
 import { generateNoRepeatIds, description, generateNoRepeatAvatars, NAMES, MESSAGES } from './data';
 import { getRandomPositiveInteger } from './util';
+import { isEscapeKey } from './util';
 
 const body = document.querySelector('body');
 const bigPicture = document.querySelector('.big-picture');
@@ -34,11 +35,11 @@ bigPictureCancel.addEventListener('click', () => {
 });
 
 document.addEventListener('keydown', (evt) => {
-  if (evt.keyCode === 27) {
+  if (isEscapeKey(evt)) {
     body.classList.remove('modal-open');
     bigPicture.classList.add('hidden');
   }
 });
 
-export {bigPictureData};
+export {bigPictureData, body};
 
